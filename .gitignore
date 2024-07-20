@@ -1,0 +1,5 @@
+cal-days.tex
+weekdays.tex
+*.aux
+*.log
+*.pdf

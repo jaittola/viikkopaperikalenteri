@@ -1,0 +1,127 @@
+\documentclass[10pt,a5paper]{book}
+\usepackage[a5paper, hmargin=1.4cm, vmargin=1cm]{geometry}  % includehead, showframe
+\usepackage{multirow}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{xstring}
+
+\title{2024}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{page}{1}
+\input{weekdays.tex}
+
+\newcommand{\weekday}[2]{%
+  \IfSubStr{#1}{#2}{\textcolor{red}{\scshape\weekdayname{#2}}}{\scshape\weekdayname{#2}}%
+}
+
+\newcommand{\daynum}[3]{%
+  \IfSubStr{#1}{#2}{\textcolor{red}{\huge{#3}}}{\huge{#3}}%
+}
+
+\newcommand{\weekfirsthalf}[5]{%
+  \begin{flushleft}
+    \begin{tabular}{p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
+      \multicolumn{3}{l}{\textit{\scshape{#5}}} \\[1ex]
+      \weekday{#4}{1} & \weekday{#4}{2} & \weekday{#4}{3} \\[0.5ex]
+      \daynum{#4}{1}{#1} & \daynum{#4}{2}{#2} & \daynum{#4}{3}{#3} \\[1ex]
+      8:00 \dotfill & 8:00 \dotfill & 8:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      9:00 \dotfill & 9:00 \dotfill & 9:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      10:00 \dotfill & 10:00 \dotfill & 10:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      11:00 \dotfill & 11:00 \dotfill & 11:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      12:00 \dotfill & 12:00 \dotfill & 12:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      13:00 \dotfill & 13:00 \dotfill & 13:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      14:00 \dotfill & 14:00 \dotfill & 14:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      15:00 \dotfill & 15:00 \dotfill & 15:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      16:00 \dotfill & 16:00 \dotfill & 16:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      17:00 \dotfill & 17:00 \dotfill & 17:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      18:00 \dotfill & 18:00 \dotfill & 18:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      19:00 \dotfill & 19:00 \dotfill & 19:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      20:00 \dotfill & 20:00 \dotfill & 20:00 \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      & & \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+    \end{tabular}
+  \end{flushleft}
+}
+
+\newcommand{\weeksecondhalf}[5]{
+  \begin{flushleft}
+    \begin{tabular}{p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
+      \multicolumn{3}{l}{} \\[1ex]
+      \weekday{#5}{4} & \weekday{#5}{5} & \weekday{#5}{6} \\[0.5ex]
+      \daynum{#5}{4}{#1} & \daynum{#5}{5}{#2} & \daynum{#5}{6}{#3} \\[1ex]
+      8:00 \dotfill & 8:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      9:00 \dotfill & 9:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      10:00 \dotfill & 10:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      11:00 \dotfill & 11:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      12:00 \dotfill & 12:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      13:00 \dotfill & 13:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      14:00 \dotfill & 14:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      15:00 \dotfill & 15:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      16:00 \dotfill & 16:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      17:00 \dotfill & 17:00 \dotfill & \weekday{#5}{7} \\
+      \dotfill & \dotfill & \multirow{2}*{\daynum{#5}{7}{#4}} \\
+      18:00 \dotfill & 18:00 \dotfill & \\
+      \dotfill & \dotfill & \dotfill \\
+      19:00 \dotfill & 19:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      20:00 \dotfill & 20:00 \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      & & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+      \dotfill & \dotfill & \dotfill \\
+
+    \end{tabular}
+  \end{flushleft}
+}
+
+\pagestyle{empty}
+\input{cal-days.tex}
+
+\end{document}

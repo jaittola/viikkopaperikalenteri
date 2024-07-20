@@ -1,0 +1,6 @@
+\weekfirsthalf{${mon_dayofmonth}}{${tue_dayofmonth}}{${wed_dayofmonth}}{7}{$month_name $year, viikko $weeknum}
+
+\newpage
+\weeksecondhalf{${thu_dayofmonth}}{${fri_dayofmonth}}{${sat_dayofmonth}}{${sun_dayofmonth}}{7}
+
+\newpage

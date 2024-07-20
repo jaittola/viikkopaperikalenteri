@@ -1,0 +1,9 @@
+\newcommand{\weekdayname}[1]{%
+  \ifnum #1=1 {${mon_name}}\fi
+  \ifnum #1=2 {${tue_name}}\fi
+  \ifnum #1=3 {${wed_name}}\fi
+  \ifnum #1=4 {${thu_name}}\fi
+  \ifnum #1=5 {${fri_name}}\fi
+  \ifnum #1=6 {${sat_name}}\fi
+  \ifnum #1=7 {${sun_name}}\fi
+}
