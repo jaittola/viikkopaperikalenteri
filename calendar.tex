@@ -1,5 +1,5 @@
 \documentclass[10pt,a5paper]{book}
-\usepackage[a5paper, hmargin=1.4cm, vmargin=1cm]{geometry}  % includehead, showframe
+\usepackage[a5paper, hmargin=1.4cm, vmargin=1cm, includehead]{geometry}  % includehead, showframe
 \usepackage{multirow}
 \usepackage[usenames, dvipsnames]{color}
 \usepackage{xstring}
@@ -11,7 +11,6 @@
 
 \maketitle
 
-\setcounter{page}{1}
 \input{weekdays.tex}
 
 \newcommand{\weekday}[2]{%
@@ -55,8 +54,6 @@
       20:00 \dotfill & 20:00 \dotfill & 20:00 \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       & & \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
@@ -114,14 +111,12 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
 
     \end{tabular}
   \end{flushleft}
 }
 
-\pagestyle{empty}
+% \pagestyle{empty}
 \input{cal-days.tex}
 
 \end{document}
