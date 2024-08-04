@@ -7,6 +7,8 @@ import itertools
 import pprint
 import string
 import pathlib
+import json
+import jsonschema
 
 parser = argparse.ArgumentParser(
     prog='cal-generator',
@@ -17,6 +19,8 @@ parser.add_argument('-s', '--start_date', required=True)
 parser.add_argument('-e', '--end_date', required=True)
 parser.add_argument('-o', '--output', default='cal-days.tex')
 parser.add_argument('-w', '--weekdays_output', default='weekdays.tex')
+parser.add_argument('-c', '--important_days_schema', default='important-days.schema.json')
+parser.add_argument('-d', '--important_days', default='important-days.json')
 
 args = parser.parse_args()
 
@@ -32,6 +36,7 @@ if startdate.isoweekday() != 1 or enddate.isoweekday() != 7:
 
 def to_caldata(calendardate):
     return { 'date': calendardate,  # year, month, day
+             'isodate': calendardate.isoformat(),
              'year': calendardate.year,
              'month': calendardate.month,
              'dayofmonth': calendardate.day,
@@ -85,28 +90,73 @@ def generate_weekdays(cal_data_week):
         output.writelines(weekdays_template.substitute(daynames))
 
 
-def generate_calendar(cal_data_by_week):
+def generate_calendar(cal_data_by_week, important_days):
     week_template = get_template("cal-week-template.tex.template")
 
     with open(args.output, "w") as cal_output:
         for w in cal_data_by_week:
             days = w['days']
+
+            wd_range = range(0, 7)
+
+            week_important_days = [important_days.get(days[i]['isodate']) for i in wd_range]
+            week_events = [week_important_days[i]['name'] if week_important_days[i] is not None else "" for i in wd_range]
+            week_holidays = [str(i + 1) if i == 6 or (week_important_days[i] is not None and week_important_days[i].get('isHoliday')) else "" for i in wd_range]
+            week_holidays_str = "".join(week_holidays)
+
+            #print("WEEK IMPORTANT DAYS", week_important_days)
+            #print("WEEK EVENTS", week_events)
+            #print("WEEK_HOLIDAYS", week_holidays)
+            #print("WEEK_HOLIDAYS_STR", week_holidays_str)
+
             wd = {
                 'month_name': w['month_name'],
                 'weeknum': w['week'],
                 'year': w['year'],
+
                 'mon_dayofmonth': days[0]['dayofmonth'],
                 'tue_dayofmonth': days[1]['dayofmonth'],
                 'wed_dayofmonth': days[2]['dayofmonth'],
                 'thu_dayofmonth': days[3]['dayofmonth'],
                 'fri_dayofmonth': days[4]['dayofmonth'],
                 'sat_dayofmonth': days[5]['dayofmonth'],
-                'sun_dayofmonth': days[6]['dayofmonth']
+                'sun_dayofmonth': days[6]['dayofmonth'],
+
+                'mon_event': week_events[0],
+                'tue_event': week_events[1],
+                'wed_event': week_events[2],
+                'thu_event': week_events[3],
+                'fri_event': week_events[4],
+                'sat_event': week_events[5],
+                'sun_event': week_events[6],
+
+                'holidays': week_holidays_str
             }
+
+            print("WEEK", wd)
+            print("")
 
             cal_output.writelines(week_template.substitute(wd))
 
+def read_important_days():
+    schema_text = pathlib.Path(args.important_days_schema).read_text()
+    schema = json.loads(schema_text)
 
+    important_days_text = pathlib.Path(args.important_days).read_text()
+    important_days = json.loads(important_days_text)
+
+    try:
+        jsonschema.validate(instance=important_days, schema=schema)
+        days = important_days["days"]
+        important_days_dict = {days[i]["date"]: days[i] for i in range(len(days))}
+        return important_days_dict
+    except Exception as error:
+        print("Validating important days failed")
+        print(error)
+        exit(2)
+
+
+important_days = read_important_days()
 cal_data_by_week = generate_calendar_days(startdate, enddate)
 generate_weekdays(cal_data_by_week[0])
-generate_calendar(cal_data_by_week)
+generate_calendar(cal_data_by_week, important_days)

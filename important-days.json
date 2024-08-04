@@ -1,0 +1,367 @@
+{
+  "days": [
+    {
+      "date": "2024-08-31",
+      "name": "Suomen luonnon päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-09-22",
+      "name": "Syyspäiväntasaus"
+    },
+    {
+      "date": "2024-10-01",
+      "name": "Miina Sillanpään päivä, kansalaisvaikuttamisen päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-10-10",
+      "name": "Aleksis Kiven päivä, suomalaisen kirjallisuuden päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-10-24",
+      "name": "YK:n päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-10-27",
+      "name": "Kesäaika päättyy"
+    },
+    {
+      "date": "2024-11-02",
+      "name": "Pyhäinpäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2024-11-06",
+      "name": "Ruotsalaisuuden päivä, Kustaa Aadolfin päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-11-10",
+      "name": "Isänpäivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-11-20",
+      "name": "Lapsen oikeuksien päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2024-12-01",
+      "name": "1. adventtisunnuntai"
+    },
+    {
+      "date": "2024-12-06",
+      "name": "Itsenäisyyspäivä",
+      "isHoliday": true,
+      "flag": "fi"
+    },
+    {
+      "date": "2024-12-08",
+      "name": "2. adventtisunnuntai"
+    },
+    {
+      "date": "2024-12-15",
+      "name": "3. adventtisunnuntai"
+    },
+    {
+      "date": "2024-12-21",
+      "name": "Talvipäivänseisaus"
+    },
+    {
+      "date": "2024-12-22",
+      "name": "4. adventtisunnuntai"
+    },
+    {
+      "date": "2024-12-24",
+      "name": "Jouluaatto"
+    },
+    {
+      "date": "2024-12-25",
+      "name": "Joulupäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2024-12-26",
+      "name": "2. joulupäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2024-12-31",
+      "name": "Uudenvuodenaatto"
+    },
+    {
+      "date": "2025-01-01",
+      "name": "Uudenvuodenpäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-01-06",
+      "name": "Loppiainen",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-01-27",
+      "name": "Holokaustin uhrien muistopäivä"
+    },
+    {
+      "date": "2025-02-05",
+      "name": "J. L. Runebergin päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-02-06",
+      "name": "Saamelaisten \\mbox{kansallispäivä}"
+    },
+    {
+      "date": "2025-02-14",
+      "name": "Ystävänpäivä"
+    },
+    {
+      "date": "2025-02-28",
+      "name": "Kalevalan päivä, suomalaisen kulttuurin päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-03-02",
+      "name": "Laskiaissunnuntai"
+    },
+    {
+      "date": "2025-03-04",
+      "name": "Laskiaistiistai"
+    },
+    {
+      "date": "2025-03-08",
+      "name": "Kansainvälinen naistenpäivä"
+    },
+    {
+      "date": "2025-03-19",
+      "name": "Minna Canthin päivä, tasa-arvon päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-03-20",
+      "name": "Kevätpäiväntasaus"
+    },
+    {
+      "date": "2025-03-30",
+      "name": "Kesäaika alkaa"
+    },
+    {
+      "date": "2025-04-08",
+      "name": "Kansainvälinen romanipäivä"
+    },
+    {
+      "date": "2025-04-09",
+      "name": "Mikael Agricolan päivä, suomen kielen päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-04-13",
+      "name": "Palmusunnuntai"
+    },
+    {
+      "date": "2025-04-18",
+      "name": "Pitkäperjantai",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-04-20",
+      "name": "Pääsiäispäivä"
+    },
+    {
+      "date": "2025-04-21",
+      "name": "2. pääsiäispäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-04-27",
+      "name": "Kansallinen veteraanipäivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-05-01",
+      "name": "Vappu",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-05-09",
+      "name": "Eurooppa-päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-05-11",
+      "name": "Äitienpäivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-05-12",
+      "name": "Suomalaisuuden päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-05-18",
+      "name": "Kaatuneitten muistopäivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-05-29",
+      "name": "Helatorstai",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-06-04",
+      "name": "Puolustusvoimain lippujuhlan päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-06-20",
+      "name": "Juhannusaatto"
+    },
+    {
+      "date": "2025-06-21",
+      "name": "Juhannuspäivä, Suomen lipun päivä, kesäpäivänseisaus",
+      "isHoliday": true,
+      "flag": "fi"
+    },
+    {
+      "date": "2025-07-06",
+      "name": "Eino Leinon päivä, runon ja suven päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-07-27",
+      "name": "Unikeonpäivä"
+    },
+    {
+      "date": "2025-08-30",
+      "name": "Suomen luonnon päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "Syyspäiväntasaus"
+    },
+    {
+      "date": "2025-10-01",
+      "name": "Miina Sillanpään päivä, kansalaisvaikuttamisen päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-10-10",
+      "name": "Aleksis Kiven päivä, suomalaisen kirjallisuuden päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-10-24",
+      "name": "YK:n päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-10-26",
+      "name": "Kesäaika päättyy"
+    },
+    {
+      "date": "2025-11-01",
+      "name": "Pyhäinpäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-11-06",
+      "name": "Ruotsalaisuuden päivä, Kustaa Aadolfin päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-11-09",
+      "name": "Isänpäivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-11-20",
+      "name": "Lapsen oikeuksien päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2025-11-30",
+      "name": "1. adventtisunnuntai"
+    },
+    {
+      "date": "2025-12-06",
+      "name": "Itsenäisyyspäivä",
+      "isHoliday": true,
+      "flag": "fi"
+    },
+    {
+      "date": "2025-12-07",
+      "name": "2. adventtisunnuntai"
+    },
+    {
+      "date": "2025-12-14",
+      "name": "3. adventtisunnuntai"
+    },
+    {
+      "date": "2025-12-21",
+      "name": "4. adventtisunnuntai, talvipäivänseisaus"
+    },
+    {
+      "date": "2025-12-24",
+      "name": "Jouluaatto"
+    },
+    {
+      "date": "2025-12-25",
+      "name": "Joulupäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-12-26",
+      "name": "2. joulupäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2025-12-31",
+      "name": "Uudenvuodenaatto"
+    },
+    {
+      "date": "2026-01-01",
+      "name": "Uudenvuodenpäivä",
+      "isHoliday": true
+    },
+    {
+      "date": "2026-01-06",
+      "name": "Loppiainen",
+      "isHoliday": true
+    },
+    {
+      "date": "2026-01-27",
+      "name": "Holokaustin uhrien muistopäivä"
+    },
+    {
+      "date": "2026-02-05",
+      "name": "J. L. Runebergin päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2026-02-06",
+      "name": "Saamelaisten kansallispäivä"
+    },
+    {
+      "date": "2026-02-14",
+      "name": "Ystävänpäivä"
+    },
+    {
+      "date": "2026-02-28",
+      "name": "Kalevalan päivä, suomalaisen kulttuurin päivä",
+      "flag": "fi"
+    },
+    {
+      "date": "2026-02-15",
+      "name": "Laskiaissunnuntai"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "Laskiaistiistai"
+    }
+  ]
+}

@@ -3,3 +3,4 @@ weekdays.tex
 *.aux
 *.log
 *.pdf
+venv

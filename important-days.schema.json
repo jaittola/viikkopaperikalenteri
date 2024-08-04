@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xyz.jukkaa/important-days.schema.json",
+  "title": "Important days in calendar",
+  "description": "A document containing the important days shown in calendar, including public holidays",
+  "type": "object",
+  "properties": {
+    "days": {
+      "description": "Array of important days",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "name": {
+            "type": "string"
+          },
+          "flag": {
+            "type": "string"
+          },
+          "isHoliday": {
+            "type": "boolean"
+          }
+        },
+        "required": ["date", "name"]
+      }
+    }
+  },
+  "required": ["days"]
+}

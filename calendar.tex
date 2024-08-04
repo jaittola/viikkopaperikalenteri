@@ -1,17 +1,39 @@
 \documentclass[10pt,a5paper]{book}
-\usepackage[a5paper, hmargin=1.4cm, vmargin=1cm, includehead]{geometry}  % includehead, showframe
+\usepackage[a5paper, hmargin=0.8cm, tmargin=0.3cm, bmargin=1cm, headheight=0.3cm, includehead]{geometry}  % includehead, showframe
 \usepackage{multirow}
 \usepackage[usenames, dvipsnames]{color}
 \usepackage{xstring}
+\usepackage{etoolbox}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{multido}
 
-\title{2024}
+\title{2024 - 2025}
 \date{}
 
 \begin{document}
 
+% Add two blank pages to the beginning so that there's one empty sheet
+% before the title page.
+\multido{}{2}{\shipout\null}
+
 \maketitle
 
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{%
+  \vspace{-11pt}
+}
+\fancyhead[LE,RO]{\tiny{\thepage}}
+
 \input{weekdays.tex}
+
+\newcommand{\colwidth}{%
+  0.31\textwidth
+}
 
 \newcommand{\weekday}[2]{%
   \IfSubStr{#1}{#2}{\textcolor{red}{\scshape\weekdayname{#2}}}{\scshape\weekdayname{#2}}%
@@ -21,12 +43,25 @@
   \IfSubStr{#1}{#2}{\textcolor{red}{\huge{#3}}}{\huge{#3}}%
 }
 
-\newcommand{\weekfirsthalf}[5]{%
+\newcommand{\event}[1]{%
+  \ifstrempty{#1}{\dotfill}{\multirow{3}{\colwidth}{\small{\textit{#1}}}}%
+}
+
+\newcommand{\eventspace}[1]{%
+  \ifstrempty{#1}{\dotfill}{}%
+}
+
+\newcommand{\satevent}[1]{%
+  \ifstrempty{#1}{\dotfill}{\multirow{4}{\colwidth}{\small{\textit{#1}}}}%
+}
+
+\newcommand{\weekfirsthalf}[8]{%
   \begin{flushleft}
-    \begin{tabular}{p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
-      \multicolumn{3}{l}{\textit{\scshape{#5}}} \\[1ex]
-      \weekday{#4}{1} & \weekday{#4}{2} & \weekday{#4}{3} \\[0.5ex]
-      \daynum{#4}{1}{#1} & \daynum{#4}{2}{#2} & \daynum{#4}{3}{#3} \\[1ex]
+    \begin{tabular}{*{3}{p{\colwidth}}}
+      \multicolumn{3}{l}{\textit{\scshape{#8}}} \\[1ex]
+      \weekday{#7}{1} & \weekday{#7}{2} & \weekday{#7}{3} \\[0.5ex]
+      \daynum{#7}{1}{#1} & \daynum{#7}{2}{#2} & \daynum{#7}{3}{#3} \\
+      & & \\
       8:00 \dotfill & 8:00 \dotfill & 8:00 \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       9:00 \dotfill & 9:00 \dotfill & 9:00 \dotfill \\
@@ -62,18 +97,21 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
+      \event{#4} & \event{#5} & \event{#6} \\
+      \eventspace{#4} & \eventspace{#5} & \eventspace{#6} \\
+      \eventspace{#4} & \eventspace{#5} & \eventspace{#6} \\
+
     \end{tabular}
   \end{flushleft}
 }
 
-\newcommand{\weeksecondhalf}[5]{
+\newcommand{\weeksecondhalf}[9]{
   \begin{flushleft}
-    \begin{tabular}{p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
+    \begin{tabular}{*{3}{p{\colwidth}}}
       \multicolumn{3}{l}{} \\[1ex]
-      \weekday{#5}{4} & \weekday{#5}{5} & \weekday{#5}{6} \\[0.5ex]
-      \daynum{#5}{4}{#1} & \daynum{#5}{5}{#2} & \daynum{#5}{6}{#3} \\[1ex]
+      \weekday{#9}{4} & \weekday{#9}{5} & \weekday{#9}{6} \\[0.5ex]
+      \daynum{#9}{4}{#1} & \daynum{#9}{5}{#2} & \daynum{#9}{6}{#3} \\
+      & & \\
       8:00 \dotfill & 8:00 \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       9:00 \dotfill & 9:00 \dotfill & \dotfill \\
@@ -87,13 +125,13 @@
       13:00 \dotfill & 13:00 \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       14:00 \dotfill & 14:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      15:00 \dotfill & 15:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      16:00 \dotfill & 16:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      17:00 \dotfill & 17:00 \dotfill & \weekday{#5}{7} \\
-      \dotfill & \dotfill & \multirow{2}*{\daynum{#5}{7}{#4}} \\
+      \dotfill & \dotfill & \satevent{#7} \\
+      15:00 \dotfill & 15:00 \dotfill & \eventspace{#7} \\
+      \dotfill & \dotfill & \eventspace{#7} \\
+      16:00 \dotfill & 16:00 \dotfill & \eventspace{#7}\\
+      \dotfill & \dotfill & \\
+      17:00 \dotfill & 17:00 \dotfill & \weekday{#9}{7} \\
+      \dotfill & \dotfill & \multirow{2}*{\daynum{#9}{7}{#4}} \\
       18:00 \dotfill & 18:00 \dotfill & \\
       \dotfill & \dotfill & \dotfill \\
       19:00 \dotfill & 19:00 \dotfill & \dotfill \\
@@ -109,14 +147,27 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
+      \event{#5} & \event{#6} & \event{#8} \\
+      \eventspace{#5} & \eventspace{#6} & \eventspace{#8} \\
+      \eventspace{#5} & \eventspace{#6} & \eventspace{#8} \\
 
     \end{tabular}
   \end{flushleft}
 }
 
+\newcommand{\memopage}{%
+  \newpage
+  \multido{}{44}{\noindent\makebox[\linewidth]{\dotfill}\endgraf}
+}
+
 % \pagestyle{empty}
 \input{cal-days.tex}
+
+\multido{}{20}{\memopage}
+
+%% Add empty pages to the end to fill in signatures. Adjust
+%% the number as you need.
+\multido{}{5}{\shipout\null}
+
 
 \end{document}
