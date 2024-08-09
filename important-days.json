@@ -1,6 +1,11 @@
 {
   "days": [
     {
+      "date": "2024-08-09",
+      "name": "Tove Janssonin ja suomalaisen taiteen päivä",
+      "flag": "fi"
+    },
+    {
       "date": "2024-08-31",
       "name": "Suomen luonnon päivä",
       "flag": "fi"
@@ -234,6 +239,11 @@
     {
       "date": "2025-07-27",
       "name": "Unikeonpäivä"
+    },
+    {
+      "date": "2025-08-09",
+      "name": "Tove Janssonin ja suomalaisen taiteen päivä",
+      "flag": "fi"
     },
     {
       "date": "2025-08-30",
