@@ -201,14 +201,17 @@
 }
 \fancyhead[LE,RO]{\tiny{\thepage}}
 
-% \pagestyle{empty}
 \input{cal-days.tex}
 
 \multido{}{34}{\memopage}
 
 %% Add empty pages to the end to fill in signatures. Adjust
 %% the number as you need.
-\multido{}{2}{\shipout\null}
+\pagestyle{empty}
+\multido{}{2}{%
+  \newpage
+  \noindent\makebox[\linewidth]{}\endgraf
+}
 
 
 \end{document}
