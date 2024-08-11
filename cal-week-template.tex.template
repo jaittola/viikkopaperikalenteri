@@ -1,6 +1,21 @@
-\weekfirsthalf{${mon_dayofmonth}}{${tue_dayofmonth}}{${wed_dayofmonth}}{${mon_event}}{${tue_event}}{${wed_event}}{$holidays}{$month_name $year, viikko $weeknum}
-
+\weekfirsthalf{mondate=${mon_dayofmonth},
+               tuedate=${tue_dayofmonth},
+               weddate=${wed_dayofmonth},
+               monevent={${mon_event}},
+               tueevent={${tue_event}},
+               wedevent={${wed_event}},
+               holidays=${holidays},
+               weekinfo={$month_name $year, viikko $weeknum}}
 \newpage
-\weeksecondhalf{${thu_dayofmonth}}{${fri_dayofmonth}}{${sat_dayofmonth}}{${sun_dayofmonth}}{${thu_event}}{${fri_event}}{${sat_event}}{${sun_event}}{$holidays}
+
+\weeksecondhalf{thudate=${thu_dayofmonth},
+                fridate=${fri_dayofmonth},
+                satdate=${sat_dayofmonth},
+                sundate=${sun_dayofmonth},
+                thuevent={${thu_event}},
+                frievent={${fri_event}},
+                satevent={${sat_event}},
+                sunevent={${sun_event}},
+                holidays=${holidays}}
 
 \newpage

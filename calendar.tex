@@ -7,27 +7,11 @@
 \usepackage{multirow}
 \usepackage{fancyhdr}
 \usepackage{multido}
+\usepackage{xkeyval}
+\usepackage{ifthen}
 
 \title{2024 - 2025}
 \date{}
-
-\begin{document}
-
-% Add two blank pages to the beginning so that there's one empty sheet
-% before the title page.
-\multido{}{2}{\shipout\null}
-
-\maketitle
-
-\pagestyle{fancy}
-
-\fancyhead{}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\headrule}{%
-  \vspace{-11pt}
-}
-\fancyhead[LE,RO]{\tiny{\thepage}}
 
 \input{weekdays.tex}
 
@@ -44,23 +28,46 @@
 }
 
 \newcommand{\event}[1]{%
-  \ifstrempty{#1}{\dotfill}{\multirow{3}{\colwidth}{\small{\textit{#1}}}}%
+  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{3}{\colwidth}{\small{\textit{#1}}}}%
 }
 
 \newcommand{\eventspace}[1]{%
-  \ifstrempty{#1}{\dotfill}{}%
+  \ifthenelse{\equal{#1}{}}{\dotfill}{}%
 }
 
 \newcommand{\satevent}[1]{%
-  \ifstrempty{#1}{\dotfill}{\multirow{4}{\colwidth}{\small{\textit{#1}}}}%
+  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{4}{\colwidth}{\small{\textit{#1}}}}%
 }
 
-\newcommand{\weekfirsthalf}[8]{%
+\makeatletter
+\define@key{weekfirsthalf}{mondate}{\def\Mondate{#1}}
+\define@key{weekfirsthalf}{tuedate}{\def\Tuedate{#1}}
+\define@key{weekfirsthalf}{weddate}{\def\Weddate{#1}}
+\define@key{weekfirsthalf}{monevent}{\def\Monevent{#1}}
+\define@key{weekfirsthalf}{tueevent}{\def\Tueevent{#1}}
+\define@key{weekfirsthalf}{wedevent}{\def\Wedevent{#1}}
+\define@key{weekfirsthalf}{holidays}{\def\Holidays{#1}}
+\define@key{weekfirsthalf}{weekinfo}{\def\Weekinfo{#1}}
+
+\define@key{weeksecondhalf}{thudate}{\def\Thudate{#1}}
+\define@key{weeksecondhalf}{fridate}{\def\Fridate{#1}}
+\define@key{weeksecondhalf}{satdate}{\def\Satdate{#1}}
+\define@key{weeksecondhalf}{sundate}{\def\Sundate{#1}}
+\define@key{weeksecondhalf}{thuevent}{\def\Thuevent{#1}}
+\define@key{weeksecondhalf}{frievent}{\def\Frievent{#1}}
+\define@key{weeksecondhalf}{satevent}{\def\Satevent{#1}}
+\define@key{weeksecondhalf}{sunevent}{\def\Sunevent{#1}}
+\define@key{weeksecondhalf}{holidays}{\def\Holidays{#1}}
+\makeatother
+
+\newcommand{\weekfirsthalf}[1]{%
+  \setkeys{weekfirsthalf}{#1}
   \begin{flushleft}
     \begin{tabular}{*{3}{p{\colwidth}}}
-      \multicolumn{3}{l}{\textit{\scshape{#8}}} \\[1ex]
-      \weekday{#7}{1} & \weekday{#7}{2} & \weekday{#7}{3} \\[0.5ex]
-      \daynum{#7}{1}{#1} & \daynum{#7}{2}{#2} & \daynum{#7}{3}{#3} \\
+      \multicolumn{3}{l}{\textit{\scshape{\Weekinfo}}} \\[1ex]
+      \weekday{\Holidays}{1} & \weekday{\Holidays}{2} & \weekday{\Holidays}{3} \\[0.5ex]
+      \daynum{\Holidays}{1}{\Mondate} & \daynum{\Holidays}{2}{\Tuedate} &
+      \daynum{\Holidays}{3}{\Weddate} \\
       & & \\
       8:00 \dotfill & 8:00 \dotfill & 8:00 \dotfill \\
       \dotfill & \dotfill & \dotfill \\
@@ -97,20 +104,22 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \event{#4} & \event{#5} & \event{#6} \\
-      \eventspace{#4} & \eventspace{#5} & \eventspace{#6} \\
-      \eventspace{#4} & \eventspace{#5} & \eventspace{#6} \\
+      \event{\Monevent} & \event{\Tueevent} & \event{\Wedevent} \\
+      \eventspace{\Monevent} & \eventspace{\Tueevent} & \eventspace{\Wedevent} \\
+      \eventspace{\Monevent} & \eventspace{\Tueevent} & \eventspace{\Wedevent} \\
 
     \end{tabular}
   \end{flushleft}
 }
 
 \newcommand{\weeksecondhalf}[9]{
+  \setkeys{weeksecondhalf}{#1}
   \begin{flushleft}
     \begin{tabular}{*{3}{p{\colwidth}}}
       \multicolumn{3}{l}{} \\[1ex]
-      \weekday{#9}{4} & \weekday{#9}{5} & \weekday{#9}{6} \\[0.5ex]
-      \daynum{#9}{4}{#1} & \daynum{#9}{5}{#2} & \daynum{#9}{6}{#3} \\
+      \weekday{\Holidays}{4} & \weekday{\Holidays}{5} & \weekday{\Holidays}{6} \\[0.5ex]
+      \daynum{\Holidays}{4}{\Thudate} & \daynum{\Holidays}{5}{\Fridate} &
+      \daynum{\Holidays}{6}{\Satdate} \\
       & & \\
       8:00 \dotfill & 8:00 \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
@@ -125,13 +134,13 @@
       13:00 \dotfill & 13:00 \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       14:00 \dotfill & 14:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \satevent{#7} \\
-      15:00 \dotfill & 15:00 \dotfill & \eventspace{#7} \\
-      \dotfill & \dotfill & \eventspace{#7} \\
-      16:00 \dotfill & 16:00 \dotfill & \eventspace{#7}\\
+      \dotfill & \dotfill & \satevent{\Satevent} \\
+      15:00 \dotfill & 15:00 \dotfill & \eventspace{\Satevent} \\
+      \dotfill & \dotfill & \eventspace{\Satevent} \\
+      16:00 \dotfill & 16:00 \dotfill & \eventspace{\Satevent}\\
       \dotfill & \dotfill & \\
-      17:00 \dotfill & 17:00 \dotfill & \weekday{#9}{7} \\
-      \dotfill & \dotfill & \multirow{2}*{\daynum{#9}{7}{#4}} \\
+      17:00 \dotfill & 17:00 \dotfill & \weekday{\Holidays}{7} \\
+      \dotfill & \dotfill & \multirow{2}*{\daynum{\Holidays}{7}{\Sundate}} \\
       18:00 \dotfill & 18:00 \dotfill & \\
       \dotfill & \dotfill & \dotfill \\
       19:00 \dotfill & 19:00 \dotfill & \dotfill \\
@@ -147,9 +156,9 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \event{#5} & \event{#6} & \event{#8} \\
-      \eventspace{#5} & \eventspace{#6} & \eventspace{#8} \\
-      \eventspace{#5} & \eventspace{#6} & \eventspace{#8} \\
+      \event{\Thuevent} & \event{\Frievent} & \event{\Sunevent} \\
+      \eventspace{\Thuevent} & \eventspace{\Frievent} & \eventspace{\Sunevent} \\
+      \eventspace{\Thuevent} & \eventspace{\Frievent} & \eventspace{\Sunevent} \\
 
     \end{tabular}
   \end{flushleft}
@@ -159,6 +168,25 @@
   \newpage
   \multido{}{44}{\noindent\makebox[\linewidth]{\dotfill}\endgraf}
 }
+
+
+\begin{document}
+
+% Add two blank pages to the beginning so that there's one empty sheet
+% before the title page.
+\multido{}{2}{\shipout\null}
+
+\maketitle
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{%
+  \vspace{-11pt}
+}
+\fancyhead[LE,RO]{\tiny{\thepage}}
 
 % \pagestyle{empty}
 \input{cal-days.tex}
