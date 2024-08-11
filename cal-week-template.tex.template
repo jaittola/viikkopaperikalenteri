@@ -5,7 +5,10 @@
                tueevent={${tue_event}},
                wedevent={${wed_event}},
                holidays=${holidays},
-               weekinfo={$month_name $year, viikko $weeknum}}
+               weekinfo={$month_name $year, viikko $weeknum},
+               monflag={${mon_flag}},
+               tueflag={${tue_flag}},
+               wedflag={${wed_flag}}}
 \newpage
 
 \weeksecondhalf{thudate=${thu_dayofmonth},
@@ -16,6 +19,9 @@
                 frievent={${fri_event}},
                 satevent={${sat_event}},
                 sunevent={${sun_event}},
-                holidays=${holidays}}
-
+                holidays=${holidays},
+                thuflag={${thu_flag}},
+                friflag={${fri_flag}},
+                satflag={${sat_flag}},
+                sunflag={${sun_flag}}}
 \newpage

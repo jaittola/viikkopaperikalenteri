@@ -9,6 +9,7 @@
 \usepackage{multido}
 \usepackage{xkeyval}
 \usepackage{ifthen}
+\usepackage{graphicx}
 
 \title{2024 - 2025}
 \date{}
@@ -27,16 +28,21 @@
   \IfSubStr{#1}{#2}{\textcolor{red}{\huge{#3}}}{\huge{#3}}%
 }
 
-\newcommand{\event}[1]{%
-  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{3}{\colwidth}{\small{\textit{#1}}}}%
+\newcommand{\flagflying}[1]{%
+  \def\flagfile{images/flag_#1.pdf}%
+  \ifthenelse{\equal{#1}{}}{}{\includegraphics[height=6pt]{\flagfile}\,}%
+}
+
+\newcommand{\event}[2]{%
+  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{3}{\colwidth}{\flagflying{#2}\small{\textit{#1}}}}%
 }
 
 \newcommand{\eventspace}[1]{%
   \ifthenelse{\equal{#1}{}}{\dotfill}{}%
 }
 
-\newcommand{\satevent}[1]{%
-  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{4}{\colwidth}{\small{\textit{#1}}}}%
+\newcommand{\satevent}[2]{%
+  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{4}{\colwidth}{\flagflying{#2}\small{\textit{#1}}}}%
 }
 
 \makeatletter
@@ -46,6 +52,9 @@
 \define@key{weekfirsthalf}{monevent}{\def\Monevent{#1}}
 \define@key{weekfirsthalf}{tueevent}{\def\Tueevent{#1}}
 \define@key{weekfirsthalf}{wedevent}{\def\Wedevent{#1}}
+\define@key{weekfirsthalf}{monflag}{\def\Monflag{#1}}
+\define@key{weekfirsthalf}{tueflag}{\def\Tueflag{#1}}
+\define@key{weekfirsthalf}{wedflag}{\def\Wedflag{#1}}
 \define@key{weekfirsthalf}{holidays}{\def\Holidays{#1}}
 \define@key{weekfirsthalf}{weekinfo}{\def\Weekinfo{#1}}
 
@@ -57,6 +66,10 @@
 \define@key{weeksecondhalf}{frievent}{\def\Frievent{#1}}
 \define@key{weeksecondhalf}{satevent}{\def\Satevent{#1}}
 \define@key{weeksecondhalf}{sunevent}{\def\Sunevent{#1}}
+\define@key{weeksecondhalf}{thuflag}{\def\Thuflag{#1}}
+\define@key{weeksecondhalf}{friflag}{\def\Friflag{#1}}
+\define@key{weeksecondhalf}{satflag}{\def\Satflag{#1}}
+\define@key{weeksecondhalf}{sunflag}{\def\Sunflag{#1}}
 \define@key{weeksecondhalf}{holidays}{\def\Holidays{#1}}
 \makeatother
 
@@ -104,7 +117,7 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \event{\Monevent} & \event{\Tueevent} & \event{\Wedevent} \\
+      \event{\Monevent}{\Monflag} & \event{\Tueevent}{\Tueflag} & \event{\Wedevent}{\Wedflag} \\
       \eventspace{\Monevent} & \eventspace{\Tueevent} & \eventspace{\Wedevent} \\
       \eventspace{\Monevent} & \eventspace{\Tueevent} & \eventspace{\Wedevent} \\
 
@@ -112,7 +125,7 @@
   \end{flushleft}
 }
 
-\newcommand{\weeksecondhalf}[9]{
+\newcommand{\weeksecondhalf}[1]{
   \setkeys{weeksecondhalf}{#1}
   \begin{flushleft}
     \begin{tabular}{*{3}{p{\colwidth}}}
@@ -134,7 +147,7 @@
       13:00 \dotfill & 13:00 \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       14:00 \dotfill & 14:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \satevent{\Satevent} \\
+      \dotfill & \dotfill & \satevent{\Satevent}{\Satflag} \\
       15:00 \dotfill & 15:00 \dotfill & \eventspace{\Satevent} \\
       \dotfill & \dotfill & \eventspace{\Satevent} \\
       16:00 \dotfill & 16:00 \dotfill & \eventspace{\Satevent}\\
@@ -156,7 +169,7 @@
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
       \dotfill & \dotfill & \dotfill \\
-      \event{\Thuevent} & \event{\Frievent} & \event{\Sunevent} \\
+      \event{\Thuevent}{\Thuflag} & \event{\Frievent}{\Friflag} & \event{\Sunevent}{\Sunflag} \\
       \eventspace{\Thuevent} & \eventspace{\Frievent} & \eventspace{\Sunevent} \\
       \eventspace{\Thuevent} & \eventspace{\Frievent} & \eventspace{\Sunevent} \\
 

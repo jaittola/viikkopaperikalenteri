@@ -101,13 +101,11 @@ def generate_calendar(cal_data_by_week, important_days):
 
             week_important_days = [important_days.get(days[i]['isodate']) for i in wd_range]
             week_events = [week_important_days[i]['name'] if week_important_days[i] is not None else "" for i in wd_range]
+
+            week_flags = [week_important_days[i].get("flag", "") if week_important_days[i] is not None else "" for i in wd_range]
+
             week_holidays = [str(i + 1) if i == 6 or (week_important_days[i] is not None and week_important_days[i].get('isHoliday')) else "" for i in wd_range]
             week_holidays_str = "".join(week_holidays)
-
-            #print("WEEK IMPORTANT DAYS", week_important_days)
-            #print("WEEK EVENTS", week_events)
-            #print("WEEK_HOLIDAYS", week_holidays)
-            #print("WEEK_HOLIDAYS_STR", week_holidays_str)
 
             wd = {
                 'month_name': w['month_name'],
@@ -130,11 +128,16 @@ def generate_calendar(cal_data_by_week, important_days):
                 'sat_event': week_events[5],
                 'sun_event': week_events[6],
 
-                'holidays': week_holidays_str
-            }
+                'mon_flag': week_flags[0],
+                'tue_flag': week_flags[1],
+                'wed_flag': week_flags[2],
+                'thu_flag': week_flags[3],
+                'fri_flag': week_flags[4],
+                'sat_flag': week_flags[5],
+                'sun_flag': week_flags[6],
 
-            print("WEEK", wd)
-            print("")
+                'holidays': week_holidays_str,
+            }
 
             cal_output.writelines(week_template.substitute(wd))
 
