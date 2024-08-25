@@ -20,12 +20,19 @@
   0.31\textwidth
 }
 
+\definecolor{linecolor}{RGB}{170, 170, 170}
+\definecolor{holidaycolor}{RGB}{208, 0, 0}
+
+\newcommand{\dottedline}{%
+  {\textcolor{linecolor}\dotfill}
+}
+
 \newcommand{\weekday}[2]{%
-  \IfSubStr{#1}{#2}{\textcolor{red}{\scshape\weekdayname{#2}}}{\scshape\weekdayname{#2}}%
+  \IfSubStr{#1}{#2}{\textcolor{holidaycolor}{\scshape\weekdayname{#2}}}{\scshape\weekdayname{#2}}%
 }
 
 \newcommand{\daynum}[3]{%
-  \IfSubStr{#1}{#2}{\textcolor{red}{\huge{#3}}}{\huge{#3}}%
+  \IfSubStr{#1}{#2}{\textcolor{holidaycolor}{\huge{#3}}}{\huge{#3}}%
 }
 
 \newcommand{\flagflying}[1]{%
@@ -34,15 +41,15 @@
 }
 
 \newcommand{\event}[2]{%
-  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{3}{\colwidth}{\flagflying{#2}\small{\textit{#1}}}}%
+  \ifthenelse{\equal{#1}{}}{\dottedline}{\multirow{3}{\colwidth}{\flagflying{#2}\small{\textit{#1}}}}%
 }
 
 \newcommand{\eventspace}[1]{%
-  \ifthenelse{\equal{#1}{}}{\dotfill}{}%
+  \ifthenelse{\equal{#1}{}}{\dottedline}{}%
 }
 
 \newcommand{\satevent}[2]{%
-  \ifthenelse{\equal{#1}{}}{\dotfill}{\multirow{4}{\colwidth}{\flagflying{#2}\small{\textit{#1}}}}%
+  \ifthenelse{\equal{#1}{}}{\dottedline}{\multirow{4}{\colwidth}{\flagflying{#2}\small{\textit{#1}}}}%
 }
 
 \makeatletter
@@ -82,41 +89,41 @@
       \daynum{\Holidays}{1}{\Mondate} & \daynum{\Holidays}{2}{\Tuedate} &
       \daynum{\Holidays}{3}{\Weddate} \\
       & & \\
-      8:00 \dotfill & 8:00 \dotfill & 8:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      9:00 \dotfill & 9:00 \dotfill & 9:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      10:00 \dotfill & 10:00 \dotfill & 10:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      11:00 \dotfill & 11:00 \dotfill & 11:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      12:00 \dotfill & 12:00 \dotfill & 12:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      13:00 \dotfill & 13:00 \dotfill & 13:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      14:00 \dotfill & 14:00 \dotfill & 14:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      15:00 \dotfill & 15:00 \dotfill & 15:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      16:00 \dotfill & 16:00 \dotfill & 16:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      17:00 \dotfill & 17:00 \dotfill & 17:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      18:00 \dotfill & 18:00 \dotfill & 18:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      19:00 \dotfill & 19:00 \dotfill & 19:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      20:00 \dotfill & 20:00 \dotfill & 20:00 \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
+      8:00 \dottedline & 8:00 \dottedline & 8:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      9:00 \dottedline & 9:00 \dottedline & 9:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      10:00 \dottedline & 10:00 \dottedline & 10:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      11:00 \dottedline & 11:00 \dottedline & 11:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      12:00 \dottedline & 12:00 \dottedline & 12:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      13:00 \dottedline & 13:00 \dottedline & 13:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      14:00 \dottedline & 14:00 \dottedline & 14:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      15:00 \dottedline & 15:00 \dottedline & 15:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      16:00 \dottedline & 16:00 \dottedline & 16:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      17:00 \dottedline & 17:00 \dottedline & 17:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      18:00 \dottedline & 18:00 \dottedline & 18:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      19:00 \dottedline & 19:00 \dottedline & 19:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      20:00 \dottedline & 20:00 \dottedline & 20:00 \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
       & & \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
       \event{\Monevent}{\Monflag} & \event{\Tueevent}{\Tueflag} & \event{\Wedevent}{\Wedflag} \\
       \eventspace{\Monevent} & \eventspace{\Tueevent} & \eventspace{\Wedevent} \\
       \eventspace{\Monevent} & \eventspace{\Tueevent} & \eventspace{\Wedevent} \\
@@ -134,41 +141,41 @@
       \daynum{\Holidays}{4}{\Thudate} & \daynum{\Holidays}{5}{\Fridate} &
       \daynum{\Holidays}{6}{\Satdate} \\
       & & \\
-      8:00 \dotfill & 8:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      9:00 \dotfill & 9:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      10:00 \dotfill & 10:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      11:00 \dotfill & 11:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      12:00 \dotfill & 12:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      13:00 \dotfill & 13:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      14:00 \dotfill & 14:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \satevent{\Satevent}{\Satflag} \\
-      15:00 \dotfill & 15:00 \dotfill & \eventspace{\Satevent} \\
-      \dotfill & \dotfill & \eventspace{\Satevent} \\
-      16:00 \dotfill & 16:00 \dotfill & \eventspace{\Satevent}\\
-      \dotfill & \dotfill & \\
-      17:00 \dotfill & 17:00 \dotfill & \weekday{\Holidays}{7} \\
-      \dotfill & \dotfill & \multirow{2}*{\daynum{\Holidays}{7}{\Sundate}} \\
-      18:00 \dotfill & 18:00 \dotfill & \\
-      \dotfill & \dotfill & \dotfill \\
-      19:00 \dotfill & 19:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      20:00 \dotfill & 20:00 \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      & & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
-      \dotfill & \dotfill & \dotfill \\
+      8:00 \dottedline & 8:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      9:00 \dottedline & 9:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      10:00 \dottedline & 10:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      11:00 \dottedline & 11:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      12:00 \dottedline & 12:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      13:00 \dottedline & 13:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      14:00 \dottedline & 14:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \satevent{\Satevent}{\Satflag} \\
+      15:00 \dottedline & 15:00 \dottedline & \eventspace{\Satevent} \\
+      \dottedline & \dottedline & \eventspace{\Satevent} \\
+      16:00 \dottedline & 16:00 \dottedline & \eventspace{\Satevent}\\
+      \dottedline & \dottedline & \\
+      17:00 \dottedline & 17:00 \dottedline & \weekday{\Holidays}{7} \\
+      \dottedline & \dottedline & \multirow{2}*{\daynum{\Holidays}{7}{\Sundate}} \\
+      18:00 \dottedline & 18:00 \dottedline & \\
+      \dottedline & \dottedline & \dottedline \\
+      19:00 \dottedline & 19:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      20:00 \dottedline & 20:00 \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      & & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
+      \dottedline & \dottedline & \dottedline \\
       \event{\Thuevent}{\Thuflag} & \event{\Frievent}{\Friflag} & \event{\Sunevent}{\Sunflag} \\
       \eventspace{\Thuevent} & \eventspace{\Frievent} & \eventspace{\Sunevent} \\
       \eventspace{\Thuevent} & \eventspace{\Frievent} & \eventspace{\Sunevent} \\
@@ -179,7 +186,7 @@
 
 \newcommand{\memopage}{%
   \newpage
-  \multido{}{44}{\noindent\makebox[\linewidth]{\dotfill}\endgraf}
+  \multido{}{44}{\noindent\makebox[\linewidth]{\dottedline}\endgraf}
 }
 
 
