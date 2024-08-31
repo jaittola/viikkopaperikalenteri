@@ -45,12 +45,16 @@ into a book.
 ### Creating quartos and other large sheets for printing
 
 If you want to create [quartos](https://en.wikipedia.org/wiki/Quarto)
-or other large-format prints of this calendar, I recommend using
+or other large-format prints of this calendar, one option is
 [bookbinder-js](https://momijizukamori.github.io/bookbinder-js).
 
 I have used [these
 settings for bookbinder-js](https://momijizukamori.github.io/bookbinder-js/?pageLayout=quarto&customSigLength=0&rotatePage=true&flyleafs=0&sigLength=3&printFile=aggregated&paperSize=A3)
 to print the calendar onto A3 paper with four pages on each sheet.
+
+Other options for converting PDFs into signatures include Adobe
+Acrobat (you need the commercial version, the free Acrobat Reader
+isn't enough) or [https://bookbinder.app/](https://bookbinder.app/).
 
 ## The structure of this calendar generator
 
