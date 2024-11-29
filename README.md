@@ -3,10 +3,15 @@
 ## Introduction
 
 This repository contains a Python script and LaTeX template files for
-generating a traditional printable paper calendar.
+generating traditional printable paper calendars.
 
-Each week is laid out on a spread of two A5 pages. The first day of
+Each week is laid out on a spread of two pages. The first day of
 week in the layout is Monday.
+
+There are two variations of the layout:
+
+ * An A5 layout with hourly time slots
+ * A simpler A6 layout without the time slots
 
 [![Sample spread of the calendar](readme-images/sample-spread.png)](readme-images/sample-spread.pdf)
 
@@ -19,13 +24,21 @@ week in the layout is Monday.
 
 ### Creating the calendar
 
+To create a calendar with A5-sized pages,
+
 1. Run `make`
 1. If the command succeeds, `calendar.pdf` contains the generated calendar file.
-1. To change the language or time range of the calendar, or to otherwise change the output, see [Customisation](#Customisation) below.
+
+To create a calendar with A6-sized pages,
+
+1. Run `make a6`
+1. If the command succeeds, `calendar-a6.pdf` contains the generated calendar file.
+
+To change the language or time range of the calendar, or to otherwise change the output, see [Customisation](#Customisation) below.
 
 ### Creating folios (or signatures or gatherings, whichever term you want to use) for bookbinding
 
-To create a PDF file containing 5-sheet signatures suitable for binding the calendar into a book,
+To create a PDF file containing 5-sheet signatures suitable for binding the A5-sized calendar into a book,
 
 1. Run `make signatures`
 2. `signatures.pdf` contains now the calendar in a printable signature format.
@@ -50,7 +63,7 @@ or other large-format prints of this calendar, one option is
 
 I have used [these
 settings for bookbinder-js](https://momijizukamori.github.io/bookbinder-js/?pageLayout=quarto&customSigLength=0&rotatePage=true&flyleafs=0&sigLength=3&printFile=aggregated&paperSize=A3)
-to print the calendar onto A3 paper with four pages on each sheet.
+to print the A6 calendar onto A4 paper with four pages on each sheet.
 
 Other options for converting PDFs into signatures include Adobe
 Acrobat (you need the commercial version, the free Acrobat Reader
@@ -61,7 +74,7 @@ isn't enough) or [https://bookbinder.app/](https://bookbinder.app/).
 The calendar generator consists of the following components:
 
 * [cal-generator.py](cal-generator.py): A python script for generating the calendar.
-* [calendar.tex](calendar.tex): The main LaTex file for the calendar, which contains the LaTeX document and functions for laying out the pages. To customise or change the layout, you'll have to edit this file.
+* [calendar.tex](calendar.tex) and [calendar-a6.tex](calendar-a6.tex): The main LaTex files for the calendar, which contain the LaTeX document and functions for laying out the pages. To customise or change the layout, you'll have to edit these files.
 * [important-days.json](important-days.json): A JSON file containing holidays and other important days that you want to print into the calendar.
 * [important-days.schema.json](important-days.schema.json): A JSON schema file to help with checking the format of important-days.json.
 * [requirements.txt](requirements.txt): PIP input file for installing Python libraries.

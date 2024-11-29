@@ -1,0 +1,157 @@
+\documentclass[10pt,a6paper]{book}
+\usepackage[a6paper, hmargin=0.6cm, tmargin=0.1cm, bmargin=0.7cm, headheight=0.3cm, headsep=0.1cm, includehead]{geometry}  % includehead, showframe
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{xstring}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{multido}
+\usepackage{xkeyval}
+\usepackage{ifthen}
+\usepackage{graphicx}
+% \usepackage[none]{hyphenat}
+\usepackage{tabularray}
+\usepackage{setspace}
+
+\title{Kalenteri vuosille 2024 - 2025}
+\date{}
+
+\input{weekdays.tex}
+
+\newcommand{\colwidth}{%
+  0.3\textwidth
+}
+
+\definecolor{linecolor}{RGB}{170, 170, 170}
+\definecolor{holidaycolor}{RGB}{208, 0, 0}
+
+\newcommand{\dottedline}{%
+  {\textcolor{linecolor}\dotfill}
+}
+
+\def\mydots{\textcolor{linecolor}{\leavevmode\xleaders\hbox to 1em{\hfil.\hfil}\hfill\kern0pt}}
+
+\newcommand{\weekday}[2]{%
+  \IfSubStr{#1}{#2}{\textcolor{holidaycolor}{\scshape\weekdayname{#2}}}{\scshape\weekdayname{#2}}%
+}
+
+\newcommand{\daynum}[3]{%
+  \IfSubStr{#1}{#2}{\textcolor{holidaycolor}{\huge{#3}}}{\huge{#3}}%
+}
+
+\newcommand{\flagflying}[1]{%
+  \def\flagfile{images/flag_#1.pdf}%
+  \ifthenelse{\equal{#1}{}}{}{\includegraphics[height=6pt]{\flagfile}\,}%
+}
+
+\newcommand{\event}[2]{%
+  \flagflying{#2}\footnotesize{\textit{#1}}%
+}
+
+\makeatletter
+\define@key{weekfirsthalf}{mondate}{\def\Mondate{#1}}
+\define@key{weekfirsthalf}{tuedate}{\def\Tuedate{#1}}
+\define@key{weekfirsthalf}{weddate}{\def\Weddate{#1}}
+\define@key{weekfirsthalf}{monevent}{\def\Monevent{#1}}
+\define@key{weekfirsthalf}{tueevent}{\def\Tueevent{#1}}
+\define@key{weekfirsthalf}{wedevent}{\def\Wedevent{#1}}
+\define@key{weekfirsthalf}{monflag}{\def\Monflag{#1}}
+\define@key{weekfirsthalf}{tueflag}{\def\Tueflag{#1}}
+\define@key{weekfirsthalf}{wedflag}{\def\Wedflag{#1}}
+\define@key{weekfirsthalf}{holidays}{\def\Holidays{#1}}
+\define@key{weekfirsthalf}{weekinfo}{\def\Weekinfo{#1}}
+
+\define@key{weeksecondhalf}{thudate}{\def\Thudate{#1}}
+\define@key{weeksecondhalf}{fridate}{\def\Fridate{#1}}
+\define@key{weeksecondhalf}{satdate}{\def\Satdate{#1}}
+\define@key{weeksecondhalf}{sundate}{\def\Sundate{#1}}
+\define@key{weeksecondhalf}{thuevent}{\def\Thuevent{#1}}
+\define@key{weeksecondhalf}{frievent}{\def\Frievent{#1}}
+\define@key{weeksecondhalf}{satevent}{\def\Satevent{#1}}
+\define@key{weeksecondhalf}{sunevent}{\def\Sunevent{#1}}
+\define@key{weeksecondhalf}{thuflag}{\def\Thuflag{#1}}
+\define@key{weeksecondhalf}{friflag}{\def\Friflag{#1}}
+\define@key{weeksecondhalf}{satflag}{\def\Satflag{#1}}
+\define@key{weeksecondhalf}{sunflag}{\def\Sunflag{#1}}
+\define@key{weeksecondhalf}{holidays}{\def\Holidays{#1}}
+\makeatother
+
+\newcommand{\weekfirsthalf}[1]{%
+  \setkeys{weekfirsthalf}{#1}
+  \begin{flushleft}
+    \begin{tblr}{
+        vline{2-3} = {2-4}{linecolor},
+        cells = {wd = \colwidth, l, h},
+        cell{1}{1} = {c=3}{wd=2\colwidth},
+        row{4} = {ht=11.2cm, f},   % h, f
+      }
+      \textit{\scshape{\Weekinfo}} & &\\
+      \weekday{\Holidays}{1} & \weekday{\Holidays}{2} & \weekday{\Holidays}{3} \\
+      \daynum{\Holidays}{1}{\Mondate} & \daynum{\Holidays}{2}{\Tuedate} &
+      \daynum{\Holidays}{3}{\Weddate} \\
+      \event{\Monevent}{\Monflag} & \event{\Tueevent}{\Tueflag} & \event{\Wedevent}{\Wedflag} \\
+    \end{tblr}
+  \end{flushleft}
+}
+
+\newcommand{\weeksecondhalf}[1]{
+  \setkeys{weeksecondhalf}{#1}
+  \begin{flushleft}
+    \begin{tblr}{
+        vline{2-3} = {2-7}{linecolor},
+        cells = {wd = \colwidth, l, h},
+        cell{1}{1} = {c=3}{wd=2\colwidth},
+        row{4} = {ht=4.62cm, f},   % h, f
+        row{7} = {ht=5.13cm, f},   % h, f
+      }
+      & & \\
+      \weekday{\Holidays}{4} & \weekday{\Holidays}{5} & \weekday{\Holidays}{6} \\
+      \daynum{\Holidays}{4}{\Thudate} & \daynum{\Holidays}{5}{\Fridate} &
+      \daynum{\Holidays}{6}{\Satdate} \\
+      & & \event{\Satevent}{\Satflag} \\
+      & & \weekday{\Holidays}{7} \\
+      & & \daynum{\Holidays}{7}{\Sundate} \\
+      \event{\Thuevent}{\Thuflag} & \event{\Frievent}{\Friflag} & \event{\Sunevent}{\Sunflag} \\
+    \end{tblr}
+  \end{flushleft}
+}
+
+\newcommand{\memopage}{%
+  \newpage
+  {\setstretch{1.5}
+    \multido{}{21}{\noindent\makebox[\linewidth]{\mydots}\endgraf}
+  }
+}
+
+
+\begin{document}
+
+% Add two blank pages to the beginning so that there's one empty sheet
+% before the title page.
+\multido{}{2}{\shipout\null}
+
+\maketitle
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{%
+  \vspace{-8pt}
+}
+\fancyhead[LE,RO]{\tiny{\thepage}}
+
+\input{cal-days.tex}
+
+\multido{}{34}{\memopage}
+
+%% Add empty pages to the end to fill in signatures. Adjust
+%% the number as you need.
+\pagestyle{empty}
+\multido{}{2}{%
+  \newpage
+  \noindent\makebox[\linewidth]{}\endgraf
+}
+
+
+\end{document}
