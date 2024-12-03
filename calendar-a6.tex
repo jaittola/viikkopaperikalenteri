@@ -1,5 +1,5 @@
 \documentclass[10pt,a6paper]{book}
-\usepackage[a6paper, hmargin=0.6cm, tmargin=0.1cm, bmargin=0.7cm, headheight=0.3cm, headsep=0.1cm, includehead]{geometry}  % includehead, showframe
+\usepackage[a6paper, hmargin=0.9cm, top=0.4cm, bottom=0.8cm, headheight=0.3cm, headsep=0.1cm, includehead]{geometry}  % includehead, showframe
 \usepackage[usenames, dvipsnames]{color}
 \usepackage{xstring}
 \usepackage{etoolbox}
@@ -21,7 +21,7 @@
   0.3\textwidth
 }
 
-\definecolor{linecolor}{RGB}{170, 170, 170}
+\definecolor{linecolor}{RGB}{140, 140, 140}
 \definecolor{holidaycolor}{RGB}{208, 0, 0}
 
 \newcommand{\dottedline}{%
@@ -82,7 +82,7 @@
         vline{2-3} = {2-4}{linecolor},
         cells = {wd = \colwidth, l, h},
         cell{1}{1} = {c=3}{wd=2\colwidth},
-        row{4} = {ht=11.2cm, f},   % h, f
+        row{4} = {ht=10.7cm, f},   % h, f
       }
       \textit{\scshape{\Weekinfo}} & &\\
       \weekday{\Holidays}{1} & \weekday{\Holidays}{2} & \weekday{\Holidays}{3} \\
@@ -100,8 +100,8 @@
         vline{2-3} = {2-7}{linecolor},
         cells = {wd = \colwidth, l, h},
         cell{1}{1} = {c=3}{wd=2\colwidth},
-        row{4} = {ht=4.62cm, f},   % h, f
-        row{7} = {ht=5.13cm, f},   % h, f
+        row{4} = {ht=4.42cm, f},   % h, f
+        row{7} = {ht=4.83cm, f},   % h, f
       }
       & & \\
       \weekday{\Holidays}{4} & \weekday{\Holidays}{5} & \weekday{\Holidays}{6} \\
