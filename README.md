@@ -62,7 +62,7 @@ or other large-format prints of this calendar, one option is
 [bookbinder-js](https://momijizukamori.github.io/bookbinder-js).
 
 I have used [these
-settings for bookbinder-js](https://momijizukamori.github.io/bookbinder-js/?pageLayout=quarto&customSigLength=0&rotatePage=true&flyleafs=0&sigLength=3&printFile=aggregated&paperSize=A3)
+settings for bookbinder-js](https://momijizukamori.github.io/bookbinder-js/?pageLayout=quarto&customSigLength=0&rotatePage=true&flyleafs=0&sigLength=3&printFile=aggregated&paperSize=A4)
 to print the A6 calendar onto A4 paper with four pages on each sheet.
 
 Other options for converting PDFs into signatures include Adobe
