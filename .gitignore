@@ -4,3 +4,4 @@ weekdays.tex
 *.log
 /*.pdf
 venv
+daylengths.tex

@@ -11,6 +11,9 @@
 % \usepackage[none]{hyphenat}
 \usepackage{tabularray}
 \usepackage{setspace}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption}
 
 \title{Kalenteri 2025}
 \date{}
@@ -23,6 +26,8 @@
 
 \definecolor{linecolor}{RGB}{140, 140, 140}
 \definecolor{holidaycolor}{RGB}{208, 0, 0}
+
+\setlength\parindent{0pt}
 
 \newcommand{\dottedline}{%
   {\textcolor{linecolor}\dotfill}
@@ -142,6 +147,29 @@
 \fancyhead[LE,RO]{\tiny{\thepage}}
 
 \input{cal-days.tex}
+
+\newpage
+
+\newgeometry{hmargin=0.9cm, top=0.4cm, bottom=0.8cm, headheight=0.3cm, headsep=0.5cm, includehead}
+
+\subsubsection*{\textit{Auringon nousu- ja laskuajat sekä päivän pituus Helsingissä}}
+
+\small{
+  \begin{longtable}{ m{0.2cm} m{1.3cm} m{1.3cm} m{1.3cm} m{1.3cm}  }
+    \multicolumn{2}{c}{\textit{Päiväys}} & \textit{Auringon\-nousu} & \textit{Auringon\-lasku} & \textit{Päivän pituus} \\
+    \hline
+    \vspace{1mm}
+    \endfirsthead
+    & \textit{Päiväys} & \textit{Auringon\-nousu} & \textit{Auringon\-lasku} & \textit{Päivän pituus} \\
+    \hline
+    \vspace{1mm}
+    \endhead
+    \input{daylengths.tex}
+  \end{longtable}
+}
+\restoregeometry
+
+\normalsize
 
 \multido{}{26}{\memopage}
 
