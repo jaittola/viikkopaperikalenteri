@@ -13,7 +13,9 @@ There are two variations of the layout:
  * An A5 layout with hourly time slots
  * A simpler A6 layout without the time slots
 
-[![Sample spread of the calendar](readme-images/sample-spread.png)](readme-images/sample-spread.pdf)
+[![Sample spread of the A5 calendar](readme-images/sample-spread.png)](readme-images/sample-spread.pdf)
+
+[![Sample spread of the A6 calendar](readme-images/sample-spread-a6.png)](readme-images/sample-spread-a6.pdf)
 
 ## Installation and use
 
