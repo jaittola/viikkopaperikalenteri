@@ -60,7 +60,7 @@ def generate_calendar_days(startdate, enddate):
                                   'year': daylist[0]['year'],
                                   'days': daylist })
 
-    pprint.pprint(cal_data_by_week)
+    # pprint.pprint(cal_data_by_week)
 
     return cal_data_by_week
 
