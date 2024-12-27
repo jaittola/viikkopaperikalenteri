@@ -36,7 +36,34 @@ To create a calendar with A6-sized pages,
 
 To change the language or time range of the calendar, or to otherwise change the output, see [Customisation](#Customisation) below.
 
-### Creating folios (or signatures or gatherings, whichever term you want to use) for bookbinding
+### Sunrise and sunset times, and lunar phase data in the A6 calendar
+
+The A6 sized calendar contains pages that list the sunrise and sunset
+times for one location. In addition, the pages can optionally show the
+lunar phase.
+
+The sunset and sunrise times are generated with a script. To set the
+location for the sunset and sunrise times, edit `LATITUDE`,
+`LONGITUDE`, `TIMEZONE` and possibly also `DATEFORMAT` in Makefile.
+
+The lunar phase data has to be obtained from an external
+source. You can get suitable data from the [Astronomical Applications API of the
+Astronomical Applications Department of the U.S. Naval
+Observatory](https://aa.usno.navy.mil/data/api).
+
+To include lunar phases in the calendar,
+
+1. Obtain the lunar phase data by running, for example, `curl -vvv 'https://aa.usno.navy.mil/api/moon/phases/year?year=2025' > lunar-phases-2025.json`
+1. In `Makefile`, uncomment `LUNAR_PHASES` and point it to the lunar phase data file. For example, `LUNAR_PHASES=lunar-phases-2025.json`.
+
+Finally, generate the A6 calendar.
+
+Note that the calendar template uses the "Arial Unicode MS" font to
+render the moon phase symbols. That font exists by default on macOS
+but not necessarily on other operating systems. You can change it
+in `calendar-a6.tex`, if needed.
+
+### Creating folios (or signatures or gatherings, whichever term you want to use) of the A5 sized calendar for bookbinding
 
 To create a PDF file containing 5-sheet signatures suitable for binding the A5-sized calendar into a book,
 
@@ -81,6 +108,8 @@ The calendar generator consists of the following components:
 * [cal-week-template.tex.template](cal-week-template.tex.template) and [weekdays.tex.template](weekdays.tex.template): template files used by cal-generator.py to create the calendar.
 * [signatures.tex](signatures.tex): A LaTeX document for creating gatherings (or signatures) suitable for bookbinding.
 * [Makefile](Makefile): a makefile containing the commands for generating the calendar.
+* [lunar-phasedata-conv.py](lunar-phasedata-conv.py): A Python script for converting the lunar phase data from US Naval Observatory.
+* [daylength.py](daylength.py): A Python script for generating the sunrise & sunset & lunar phase table.
 
 ## Customisation
 
@@ -95,8 +124,11 @@ Note that `START_DATE` must be a Monday and `END_DATE` must be a Sunday.
 
 ### Language
 
-To change the language for week days and month names, change `LOCALE`
-in [Makefile](Makefile).
+[Makefile](Makefile) contains some variables that affect the language
+and date formatting.
+
+1. To change the language for week days and month names, change `LOCALE`.
+1. To change the date format in the sunrise & sunset table, change `DATEFORMAT`
 
 In their current form, the calendar files and templates contain some
 hard-coded texts in Finnish. To create a calendar in another language,
@@ -123,6 +155,14 @@ holidays and flag flying days based on information from
 <https://almanakka.helsinki.fi/liputus-ja-juhlapaivat/>,
 <https://intermin.fi/suomen-lippu/liputuspaivat> and
 [https://www.juhlapyhät.fi](https://www.xn--juhlapyht-22a.fi/).
+
+### Sunrise & Sunset and the lunar phases
+
+To change the location for the sunrise and sunset times, change
+`LATITUDE`, `LONGITUDE`, and `TIMEZONE` in [Makefile](Makefile).
+
+The name of the location (by default Helsinki) is embedded in the
+heading text in [calendar-a6.tex](calendar-a6.tex).
 
 ### Other more extensive customisations
 

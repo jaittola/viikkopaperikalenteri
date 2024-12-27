@@ -5,3 +5,5 @@ weekdays.tex
 /*.pdf
 venv
 daylengths.tex
+lunar-phases*.json
+moondata.json

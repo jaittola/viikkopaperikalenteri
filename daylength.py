@@ -9,6 +9,8 @@ from math import acos, asin, ceil, cos, degrees, fmod, radians, sin, sqrt, modf
 from time import time
 import argparse
 import locale
+import pathlib
+import json
 
 log = logging.getLogger()
 
@@ -126,6 +128,25 @@ def calc(
 
     return { "rise": j2ts(j_rise), "set": j2ts(j_set), "daylen": daylen }
 
+
+def get_moondata(filename) -> dict:
+    moondata = pathlib.Path(filename).read_text()
+    return json.loads(moondata)
+
+
+def get_moonphase(ts: datetime, moondata: dict | None) -> str:
+    if moondata == None:
+        return ""
+
+    d = ts.date().isoformat()
+    md_day = moondata.get(d)
+
+    if md_day:
+        sym = md_day.get("c", "")
+        return f'& \\moonsym{{{sym}}}' if sym else "& "
+    else:
+        return "& "
+
 def main():
     logging.basicConfig(level=logging.DEBUG)
     latitude = 60.187728
@@ -148,6 +169,7 @@ def main2():
     parser.add_argument('-m', '--oldmain', action='store_true')
     parser.add_argument('-d', '--debug', action='store_true')
     parser.add_argument('-f', '--dateformat', default='%x')
+    parser.add_argument('-M', '--moondata')
 
     args = parser.parse_args()
 
@@ -167,6 +189,10 @@ def main2():
 
     dates = [ date.fromordinal(startdate.toordinal() + i) for i in dayrange]
 
+    moondata = None
+    if args.moondata:
+        moondata = get_moondata(args.moondata)
+
     log.debug(f'Dates = {dates}')
 
     if args.oldmain:
@@ -182,7 +208,9 @@ def main2():
             rise = datetime.fromtimestamp(times["rise"])
             setting = datetime.fromtimestamp(times["set"])
             extraspace = "[0.2cm]" if ts.weekday() == 6 else ""
-            print(f'{ts.strftime("%a")} & {ts.strftime(args.dateformat)} & {rise.strftime("%R")} & {setting.strftime("%R")} & {_tohms(times["daylen"])} \\\\{extraspace}')
+            moonphase = get_moonphase(ts, moondata)
+
+            print(f'{ts.strftime("%a")} & {ts.strftime(args.dateformat)} & {rise.strftime("%R")} & {setting.strftime("%R")} & {_tohms(times["daylen"])} {moonphase}\\\\{extraspace}')
 
 if __name__ == '__main__':
     main2()

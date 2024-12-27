@@ -14,6 +14,7 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{caption}
+\usepackage{fontspec}
 
 \title{Kalenteri 2025}
 \date{}
@@ -28,6 +29,8 @@
 \definecolor{holidaycolor}{RGB}{208, 0, 0}
 
 \setlength\parindent{0pt}
+
+\newfontfamily{\moonsymfont}{Arial Unicode MS}
 
 \newcommand{\dottedline}{%
   {\textcolor{linecolor}\dotfill}
@@ -127,6 +130,42 @@
   }
 }
 
+\newcommand{\suntable}[1]{%
+  \newcommand{\sunheadings}{%
+    & \textit{Päiväys} & \textit{Auringon\-nousu} & \textit{Auringon\-lasku} & \textit{Päivän pituus}
+  }
+
+  \newcommand{\moonheading}{%
+    \ifthenelse{\equal{\withmoon}1}{& \textit{Kuun vaihe}}{}
+  }
+
+  \newcommand{\suntableheading}{%
+    \ifthenelse{\equal{\withmoon}1}{%
+      \begin{longtable}{m{0.2cm} m{1.3cm} m{1.3cm} m{1.3cm} m{1.3cm} m{0.8cm}}
+    }{%
+      \begin{longtable}{m{0.2cm} m{1.3cm} m{1.3cm} m{1.3cm} m{1.3cm}}
+    }
+  }
+
+  {\small
+    \suntableheading
+      \sunheadings \moonheading \\
+      \hline
+      \vspace{1mm}
+      \endfirsthead
+      \sunheadings \moonheading \\
+      \hline
+      \vspace{1mm}
+      \endhead
+      #1
+    \end{longtable}
+  }
+}
+
+\newcommand{\moonsym}[1]{%
+  %%  {\fontfamily{phv}\selectfont #1}
+  \multicolumn{1}{c}{{\moonsymfont #1}}
+}
 
 \begin{document}
 
@@ -152,24 +191,11 @@
 
 \newgeometry{hmargin=0.9cm, top=0.4cm, bottom=0.8cm, headheight=0.3cm, headsep=0.5cm, includehead}
 
-\subsubsection*{\textit{Auringon nousu- ja laskuajat sekä päivän pituus Helsingissä}}
+\subsubsection*{\textit{Auringon nousu- ja laskuajat, päivän pituus sekä kuun vaihe Helsingissä}}
 
-\small{
-  \begin{longtable}{ m{0.2cm} m{1.3cm} m{1.3cm} m{1.3cm} m{1.3cm}  }
-    \multicolumn{2}{c}{\textit{Päiväys}} & \textit{Auringon\-nousu} & \textit{Auringon\-lasku} & \textit{Päivän pituus} \\
-    \hline
-    \vspace{1mm}
-    \endfirsthead
-    & \textit{Päiväys} & \textit{Auringon\-nousu} & \textit{Auringon\-lasku} & \textit{Päivän pituus} \\
-    \hline
-    \vspace{1mm}
-    \endhead
-    \input{daylengths.tex}
-  \end{longtable}
-}
+\suntable{\input{daylengths.tex}}
+
 \restoregeometry
-
-\normalsize
 
 \multido{}{34}{\memopage}
 
