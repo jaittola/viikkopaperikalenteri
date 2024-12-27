@@ -47,6 +47,7 @@ def _tohms(hours: float | int) -> str:
     s_rounded = round(m_fraction * 60.0)
     return f'{int(hours_full)}:{minutes_full:02.0f}:{s_rounded:02d}'
 
+
 def calc(
         current_timestamp: float,
         f: float,
@@ -57,7 +58,8 @@ def calc(
 ) -> tuple[float, float, None] | tuple[None, None, bool]:
     log.debug(f'Latitude               f       = {_deg2human(f)}')
     log.debug(f'Longitude              l_w     = {_deg2human(l_w)}')
-    log.debug(f'Now                    ts      = {_ts2human(current_timestamp, debugtz)}')
+    log.debug(
+        f'Now                    ts      = {_ts2human(current_timestamp, debugtz)}')
 
     J_date = ts2j(current_timestamp)
     log.debug(f'Julian date            j_date  = {J_date:.3f} days')
@@ -78,7 +80,8 @@ def calc(
     log.debug(f'Solar mean anomaly     M       = {_deg2human(M_degrees)}')
 
     # Equation of the center
-    C_degrees = 1.9148 * sin(M_radians) + 0.02 * sin(2 * M_radians) + 0.0003 * sin(3 * M_radians)
+    C_degrees = 1.9148 * sin(M_radians) + 0.02 * \
+        sin(2 * M_radians) + 0.0003 * sin(3 * M_radians)
     # The difference for final program result is few milliseconds
     # https://www.astrouw.edu.pl/~jskowron/pracownia/praca/sunspot_answerbook_expl/expl-4.html
     # e = 0.01671
@@ -100,8 +103,10 @@ def calc(
     Lambda_radians = radians(L_degrees)
 
     # Solar transit (julian date)
-    J_transit = 2451545.0 + J_ + 0.0053 * sin(M_radians) - 0.0069 * sin(2 * Lambda_radians)
-    log.debug(f'Solar transit time     J_trans = {_j2human(J_transit, debugtz)}')
+    J_transit = 2451545.0 + J_ + 0.0053 * \
+        sin(M_radians) - 0.0069 * sin(2 * Lambda_radians)
+    log.debug(
+        f'Solar transit time     J_trans = {_j2human(J_transit, debugtz)}')
 
     # Declination of the Sun
     sin_d = sin(Lambda_radians) * sin(radians(23.4397))
@@ -109,7 +114,8 @@ def calc(
     cos_d = cos(asin(sin_d))
 
     # Hour angle
-    some_cos = (sin(radians(-0.833 - 2.076 * sqrt(elevation) / 60.0)) - sin(radians(f)) * sin_d) / (cos(radians(f)) * cos_d)
+    some_cos = (sin(radians(-0.833 - 2.076 * sqrt(elevation) / 60.0)
+                    ) - sin(radians(f)) * sin_d) / (cos(radians(f)) * cos_d)
     try:
         w0_radians = acos(some_cos)
     except ValueError:
@@ -124,9 +130,10 @@ def calc(
 
     log.debug(f'Sunrise                j_rise  = {_j2human(j_rise, debugtz)}')
     log.debug(f'Sunset                 j_set   = {_j2human(j_set, debugtz)}')
-    log.debug(f'Day length                       {w0_degrees / (180 / 24):.3f} hours')
+    log.debug(
+        f'Day length                       {w0_degrees / (180 / 24):.3f} hours')
 
-    return { "rise": j2ts(j_rise), "set": j2ts(j_set), "daylen": daylen }
+    return {"rise": j2ts(j_rise), "set": j2ts(j_set), "daylen": daylen}
 
 
 def get_moondata(filename) -> dict:
@@ -147,12 +154,14 @@ def get_moonphase(ts: datetime, moondata: dict | None) -> str:
     else:
         return "& "
 
+
 def main():
     logging.basicConfig(level=logging.DEBUG)
     latitude = 60.187728
     longitude = 24.919004
     elevation = 0
-    print(calc(time(), latitude, longitude, elevation, debugtz=ZoneInfo("Europe/Helsinki")))
+    print(calc(time(), latitude, longitude, elevation,
+          debugtz=ZoneInfo("Europe/Helsinki")))
 
 
 def main2():
@@ -179,15 +188,17 @@ def main2():
     if args.locale:
         locale.setlocale(locale.LC_TIME, args.locale)
 
-    startdate = date.fromisoformat(args.start_date)   # datetime.date(2024, 7, 15)
-    enddate = date.fromisoformat(args.end_date)       # datetime.date(2024, 12, 31)
+    # datetime.date(2024, 7, 15)
+    startdate = date.fromisoformat(args.start_date)
+    # datetime.date(2024, 12, 31)
+    enddate = date.fromisoformat(args.end_date)
 
     daycount = (enddate - startdate).days + 1
     dayrange = range(0, daycount)
 
     tz = ZoneInfo(args.timezone)
 
-    dates = [ date.fromordinal(startdate.toordinal() + i) for i in dayrange]
+    dates = [date.fromordinal(startdate.toordinal() + i) for i in dayrange]
 
     moondata = None
     if args.moondata:
@@ -199,18 +210,21 @@ def main2():
         main()
     else:
         for d in dates:
-            ts = datetime(year = d.year,
-                          month = d.month,
-                          day = d.day,
-                          hour = 12,
-                          tzinfo = tz)
-            times = calc(ts.timestamp(), args.latitude, args.longitude, args.elevation, debugtz=tz)
+            ts = datetime(year=d.year,
+                          month=d.month,
+                          day=d.day,
+                          hour=12,
+                          tzinfo=tz)
+            times = calc(ts.timestamp(), args.latitude,
+                         args.longitude, args.elevation, debugtz=tz)
             rise = datetime.fromtimestamp(times["rise"])
             setting = datetime.fromtimestamp(times["set"])
             extraspace = "[0.2cm]" if ts.weekday() == 6 else ""
             moonphase = get_moonphase(ts, moondata)
 
-            print(f'{ts.strftime("%a")} & {ts.strftime(args.dateformat)} & {rise.strftime("%R")} & {setting.strftime("%R")} & {_tohms(times["daylen"])} {moonphase}\\\\{extraspace}')
+            print(
+                f'{ts.strftime("%a")} & {ts.strftime(args.dateformat)} & {rise.strftime("%R")} & {setting.strftime("%R")} & {_tohms(times["daylen"])} {moonphase}\\\\{extraspace}')
+
 
 if __name__ == '__main__':
     main2()

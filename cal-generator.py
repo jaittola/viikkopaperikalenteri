@@ -19,7 +19,8 @@ parser.add_argument('-s', '--start_date', required=True)
 parser.add_argument('-e', '--end_date', required=True)
 parser.add_argument('-o', '--output', default='cal-days.tex')
 parser.add_argument('-w', '--weekdays_output', default='weekdays.tex')
-parser.add_argument('-c', '--important_days_schema', default='important-days.schema.json')
+parser.add_argument('-c', '--important_days_schema',
+                    default='important-days.schema.json')
 parser.add_argument('-d', '--important_days', default='important-days.json')
 
 args = parser.parse_args()
@@ -27,38 +28,42 @@ args = parser.parse_args()
 if args.locale:
     locale.setlocale(locale.LC_TIME, args.locale)
 
-startdate = datetime.date.fromisoformat(args.start_date)   # datetime.date(2024, 7, 15)
-enddate = datetime.date.fromisoformat(args.end_date)       # datetime.date(2024, 12, 31)
+startdate = datetime.date.fromisoformat(
+    args.start_date)   # datetime.date(2024, 7, 15)
+enddate = datetime.date.fromisoformat(
+    args.end_date)       # datetime.date(2024, 12, 31)
 
 if startdate.isoweekday() != 1 or enddate.isoweekday() != 7:
     print("Start date should be a monday and end date a sunday")
     exit(1)
 
+
 def to_caldata(calendardate):
-    return { 'date': calendardate,  # year, month, day
-             'isodate': calendardate.isoformat(),
-             'year': calendardate.year,
-             'month': calendardate.month,
-             'dayofmonth': calendardate.day,
-             'weekday': calendardate.isoweekday(),
-             'day_name': calendardate.strftime("%A"),
-             'month_name': calendardate.strftime("%B"),
-             'weeknum': calendardate.isocalendar()[1] }
+    return {'date': calendardate,  # year, month, day
+            'isodate': calendardate.isoformat(),
+            'year': calendardate.year,
+            'month': calendardate.month,
+            'dayofmonth': calendardate.day,
+            'weekday': calendardate.isoweekday(),
+            'day_name': calendardate.strftime("%A"),
+            'month_name': calendardate.strftime("%B"),
+            'weeknum': calendardate.isocalendar()[1]}
 
 
 def generate_calendar_days(startdate, enddate):
     daycount = (enddate - startdate).days + 1
     dayrange = range(0, daycount)
 
-    calendardates = [ datetime.date.fromordinal(startdate.toordinal() + i) for i in dayrange]
+    calendardates = [datetime.date.fromordinal(
+        startdate.toordinal() + i) for i in dayrange]
 
     cal_data_by_week = []
     for wn, days in itertools.groupby(map(to_caldata, calendardates), lambda d: d['weeknum']):
         daylist = list(days)
-        cal_data_by_week.append({ 'week': wn,
-                                  'month_name': daylist[0]['month_name'],
-                                  'year': daylist[0]['year'],
-                                  'days': daylist })
+        cal_data_by_week.append({'week': wn,
+                                 'month_name': daylist[0]['month_name'],
+                                 'year': daylist[0]['year'],
+                                 'days': daylist})
 
     # pprint.pprint(cal_data_by_week)
 
@@ -99,12 +104,16 @@ def generate_calendar(cal_data_by_week, important_days):
 
             wd_range = range(0, 7)
 
-            week_important_days = [important_days.get(days[i]['isodate']) for i in wd_range]
-            week_events = [week_important_days[i]['name'] if week_important_days[i] is not None else "" for i in wd_range]
+            week_important_days = [important_days.get(
+                days[i]['isodate']) for i in wd_range]
+            week_events = [week_important_days[i]['name']
+                           if week_important_days[i] is not None else "" for i in wd_range]
 
-            week_flags = [week_important_days[i].get("flag", "") if week_important_days[i] is not None else "" for i in wd_range]
+            week_flags = [week_important_days[i].get(
+                "flag", "") if week_important_days[i] is not None else "" for i in wd_range]
 
-            week_holidays = [str(i + 1) if i == 6 or (week_important_days[i] is not None and week_important_days[i].get('isHoliday')) else "" for i in wd_range]
+            week_holidays = [str(i + 1) if i == 6 or (week_important_days[i]
+                                                      is not None and week_important_days[i].get('isHoliday')) else "" for i in wd_range]
             week_holidays_str = "".join(week_holidays)
 
             wd = {
@@ -141,6 +150,7 @@ def generate_calendar(cal_data_by_week, important_days):
 
             cal_output.writelines(week_template.substitute(wd))
 
+
 def read_important_days():
     schema_text = pathlib.Path(args.important_days_schema).read_text()
     schema = json.loads(schema_text)
@@ -151,7 +161,8 @@ def read_important_days():
     try:
         jsonschema.validate(instance=important_days, schema=schema)
         days = important_days["days"]
-        important_days_dict = {days[i]["date"]: days[i] for i in range(len(days))}
+        important_days_dict = {days[i]["date"]: days[i]
+                               for i in range(len(days))}
         return important_days_dict
     except Exception as error:
         print("Validating important days failed")

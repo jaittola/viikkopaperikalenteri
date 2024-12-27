@@ -7,6 +7,7 @@ import json
 
 log = logging.getLogger()
 
+
 def convert_phasedata(filename: str):
     log.debug(f'Convert {filename}')
 
@@ -34,6 +35,7 @@ def convert_phasedata(filename: str):
 
     print(json.dumps(bydate))
 
+
 def main():
     log = logging.getLogger()
 
@@ -50,9 +52,9 @@ def main():
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)
 
-
     if args.filename:
         convert_phasedata(args.filename)
+
 
 if __name__ == '__main__':
     main()
